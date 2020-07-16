@@ -8,9 +8,14 @@ airflow_extra_packages: []
 airflow_pip_executable: "pip"
 airflow_executable: "/usr/local/bin/airflow"
 
-airflow_required_libs:
+airflow_required_libs_debian:
   - python-pip
   - acl
+
+airflow_required_libs_redhat:
+  - python3
+  - python-setuptools
+  - python3-devel
 
 airflow_required_python_packages: []
   # Version is not mandatory

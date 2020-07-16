@@ -24,11 +24,19 @@
     owner: "{{ airflow_user }}"
     group: "{{ airflow_group }}"
 
-- name: Airflow | Installing dependencies
+- name: Airflow | Installing dependencies for Debian
   apt:
-    pkg: "{{ airflow_required_libs }}"
+    pkg: "{{ airflow_required_libs_debian }}"
     state: present
     update_cache: yes
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Airflow | Installing dependencies for RedHat
+  yum:
+    pkg: "{{ airflow_required_libs_redhat }}"
+    state: present
+    update_cache: yes
+  when: ansible_facts['os_family'] == "RedHat"
 
 - name: Airflow | Installing Python pip dependencies
   pip:
